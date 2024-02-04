@@ -41,4 +41,23 @@ class ProductController extends AbstractController
        return new JsonResponse(['products' => $responseDate]);
     }
 
+    #[Route('/product/{id}', name: 'get_one_product', methods: ['GET'])]
+    public function getProduct($id): JsonResponse
+    {
+        $product = $this->entityManager->getRepository(Product::class)->findOneBy(['id' => $id]);
+
+        if (!$product) {
+            throw new NotFoundHttpException('No product found for this id.');
+        }
+
+        $responseDate = [
+            'id' => $product->getId(),
+            'product_id' => $product->getProductId(),
+            'product_name' => $product->getProductName(),
+            'stock_available' => $product->getStockAvailable() ? 'Yes' : 'No',
+        ];
+
+        return new JsonResponse(['product' => $responseDate]);
+    }
+
 }
