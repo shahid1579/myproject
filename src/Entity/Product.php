@@ -19,8 +19,8 @@ class Product
     #[ORM\Column(type:"string", length: 255)]
     private ?string $product_name = null;
 
-    #[ORM\Column]
-    private ?bool $stock_available = null;
+    #[ORM\Column(type:"integer", length : 25)]
+    private ?int $stock_available = null;
 
     // ...
 
@@ -59,7 +59,7 @@ class Product
         return $this;
     }
 
-    public function isStockAvailable(): ?bool
+    public function getStockAvailable(): ?int
     {
         return $this->stock_available;
     }

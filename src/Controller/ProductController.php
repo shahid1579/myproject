@@ -54,7 +54,7 @@ class ProductController extends AbstractController
             'id' => $product->getId(),
             'product_id' => $product->getProductId(),
             'product_name' => $product->getProductName(),
-            'stock_available' => $product->getStockAvailable() ? 'Yes' : 'No',
+            'stock_available' => $product->getStockAvailable(),
         ];
 
         return new JsonResponse(['product' => $responseDate]);
